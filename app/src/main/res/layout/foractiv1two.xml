@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+   <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       android:id="@+id/forActiv1"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       app:layout_constraintTop_toTopOf="parent"
+       tools:layout_editor_absoluteX="0dp">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+      <EditText
+          android:id="@+id/poisk"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="Найти"
+          android:layout_marginRight="10dp"
+          android:layout_marginLeft="10dp"
+          android:textSize="20dp"
+          android:selectAllOnFocus="true"
+          android:singleLine="true"
+          android:textColor="@color/colorAccent" />
+   <LinearLayout
+       android:layout_marginTop="1dp"
+       android:id="@+id/dopbut"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginRight="10dp"
+       android:layout_marginLeft="10dp"
+       android:orientation="horizontal">
+
+      <Button
+          android:id="@+id/but1"
+
+          android:layout_width="wrap_content"
+          android:layout_height="20dp"
+          android:layout_weight="1"
+          android:background="@drawable/edittextstyle3"
+          android:text="ә" />
+      <Button
+          android:id="@+id/but2"
+          android:background="@drawable/edittextstyle3"
+          android:layout_width="wrap_content"
+          android:layout_height="20dp"
+          android:text="җ"
+          android:layout_weight="1"/>
+      <Button
+          android:id="@+id/but3"
+          android:layout_width="wrap_content"
+          android:layout_height="20dp"
+          android:background="@drawable/edittextstyle3"
+          android:text="ң"
+          android:layout_weight="1"/>
+      <Button
+          android:id="@+id/but4"
+          android:layout_width="wrap_content"
+          android:background="@drawable/edittextstyle3"
+          android:layout_height="20dp"
+          android:text="ө"
+          android:layout_weight="1"/>
+      <Button
+          android:background="@drawable/edittextstyle3"
+          android:id="@+id/but5"
+          android:layout_width="wrap_content"
+          android:layout_height="20dp"
+          android:text="ү"
+          android:layout_weight="1"/>
+      <Button
+          android:background="@drawable/edittextstyle3"
+          android:id="@+id/but6"
+          android:layout_width="wrap_content"
+          android:layout_height="20dp"
+          android:text="һ"
+          android:layout_weight="1"/>
+   </LinearLayout>
+</LinearLayout>
+
+   </FrameLayout>
+
+
+</android.support.constraint.ConstraintLayout>

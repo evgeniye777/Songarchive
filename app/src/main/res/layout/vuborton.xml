@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/vuborTon">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2.5dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:backgroundTint="@android:color/holo_green_light"
+                android:id="@+id/ak1"
+                style="@android:style/Widget.Button"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:text="Ak" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/ak2"
+                android:backgroundTint="@android:color/holo_green_light"
+                style="@android:style/Widget.Button"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:text="Ak" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/ak3"
+                android:backgroundTint="@android:color/holo_green_light"
+                style="@android:style/Widget.Button"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:text="Ak" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/ak4"
+                android:backgroundTint="@android:color/holo_green_light"
+                style="@android:style/Widget.Button"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:text="Ak"
+                android:textColor="#060607" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/ak5"
+                android:backgroundTint="@android:color/holo_green_light"
+                style="@android:style/Widget.Button"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:text="Ak" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/ak6"
+                android:backgroundTint="@android:color/holo_green_light"
+                style="@android:style/Widget.Button"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:text="Ak" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/ak7"
+                android:backgroundTint="@android:color/holo_green_light"
+                style="@android:style/Widget.Button"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:text="Ak" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/ak8"
+                android:backgroundTint="@android:color/holo_green_light"
+                style="@android:style/Widget.Button"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:text="Ak" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/ak9"
+                android:backgroundTint="@android:color/holo_green_light"
+                style="@android:style/Widget.Button"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:text="Ak" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/ak10"
+                android:backgroundTint="@android:color/holo_green_light"
+                style="@android:style/Widget.Button"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:text="Ak" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/ak11"
+                android:backgroundTint="@android:color/holo_green_light"
+                style="@android:style/Widget.Button"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:text="Ak" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/ak12"
+                android:backgroundTint="@android:color/holo_green_light"
+                style="@android:style/Widget.Button"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:text="Ak" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/del"
+        android:icon="@drawable/ic_action_del"
+        android:title="Удалить"
+        app:showAsAction="ifRoom|withText"
+        />
+    <item
+        android:id="@+id/obnov"
+        android:icon="@drawable/ic_action_obnov"
+        android:title="Редактировать"
+        app:showAsAction="ifRoom|withText"
+        />
+    <item
+        android:id="@+id/orientation"
+        android:icon="@drawable/ic_action_orientation"
+        android:title="Ориентация текста"
+        app:showAsAction="ifRoom|withText"
+        />
+    <item
+        android:id="@+id/izbrannoe"
+        android:icon="@drawable/ic_action_izbrannoe"
+        android:title="Удалить из избранного"
+        app:showAsAction="ifRoom|withText"
+        />
+    <item
+        android:id="@+id/noizbrannoe"
+        android:icon="@drawable/ic_action_noizbrannoe"
+        android:title="Добавить в избранное"
+        app:showAsAction="ifRoom|withText"
+        />
+</menu>
