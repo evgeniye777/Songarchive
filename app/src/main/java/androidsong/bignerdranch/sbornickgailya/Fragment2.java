@@ -162,8 +162,9 @@ public class Fragment2 extends Fragment {
             super(inflater.inflate(R.layout.spisocksong,parent,false));
             itemView.setOnClickListener(this);
             mTitle = (TextView) itemView.findViewById(R.id.song_Title);
-            if (sitc==1) {mTitle.setTextColor(Color.WHITE);}
             mText = (TextView) itemView.findViewById(R.id.song_Text);
+            if (sitc==1) {mTitle.setTextColor(Color.WHITE);
+                mText.setTextColor(Color.WHITE);}
             mImageView = (ImageView) itemView.findViewById(R.id.mImage);
 
         }
