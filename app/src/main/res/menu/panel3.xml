@@ -5,30 +5,37 @@
         android:id="@+id/del"
         android:icon="@drawable/ic_action_del"
         android:title="Удалить"
-        app:showAsAction="ifRoom|withText"
+        app:showAsAction="never"
         />
     <item
         android:id="@+id/obnov"
         android:icon="@drawable/ic_action_obnov"
         android:title="Редактировать"
-        app:showAsAction="ifRoom|withText"
+        app:showAsAction="never"
         />
     <item
         android:id="@+id/orientation"
         android:icon="@drawable/ic_action_orientation"
         android:title="Ориентация текста"
-        app:showAsAction="ifRoom|withText"
+        app:showAsAction="always"
         />
     <item
         android:id="@+id/izbrannoe"
         android:icon="@drawable/ic_action_izbrannoe"
         android:title="Удалить из избранного"
-        app:showAsAction="ifRoom|withText"
+        app:showAsAction="always"
         />
     <item
         android:id="@+id/noizbrannoe"
+        android:orderInCategory="1"
         android:icon="@drawable/ic_action_noizbrannoe"
         android:title="Добавить в избранное"
-        app:showAsAction="ifRoom|withText"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/export"
+        android:icon="@drawable/ic_action_noizbrannoe"
+        android:title="Поделиться"
+        app:showAsAction="never"
         />
 </menu>

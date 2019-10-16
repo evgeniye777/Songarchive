@@ -10,22 +10,33 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
 public class PlusObnov extends DialogFragment {
+    //класс для открытия окна в котором можно внести изменения одной песни
     public  static  final String EXTRA_POA = "com.bignerdranceh.android.criminalintent.poa";
     public  static  final String EXTRA_PON = "com.bignerdranceh.android.criminalintent.pon";
     public  static  final String EXTRA_POS = "com.bignerdranceh.android.criminalintent.pos";
     String akords,name,slova;
+    static int color;
     EditText Ea,En,Es;
-    public static PlusObnov newInstance() {
+    public static PlusObnov newInstance(int color0) {
+        color = color0;
         PlusObnov fragment = new PlusObnov();
         return fragment;
     }
     @Override
+    public void onStart() {
+        super.onStart();
+        Window window = getDialog().getWindow();
+        window.setBackgroundDrawableResource(color);
+    }
+    @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.plusobnov,null);
+        //три поля аккорды название слова
         Ea = (EditText) v.findViewById(R.id.akords);
         En = (EditText) v.findViewById(R.id.name);
         Es = (EditText) v.findViewById(R.id.slova);
@@ -42,7 +53,7 @@ public class PlusObnov extends DialogFragment {
             }
         }).create();
     }
-
+//метод для выполнения сохранения изменений
     private  void sendResult(int resultCode, String akords0, String name0,String slova0){
         if (getTargetFragment() == null) {return;}
         Intent intent = new Intent();
@@ -52,5 +63,10 @@ public class PlusObnov extends DialogFragment {
         getTargetFragment().onActivityResult(getTargetRequestCode(),resultCode,intent);
         getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();   //закрытие этого фрагмента
     }
-    public void most(String akords0,String name0,String slova0) {akords=akords0;name =name0; slova = slova0;}
+    //метод для передачи в это окно имеющихся слов аккордов названия если происходит изменение а не создание новой песни
+    public void most(String akords0,String name0,String slova0) {
+        akords=akords0;
+    name =name0;
+    slova = slova0;
+    }
 }

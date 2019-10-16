@@ -25,11 +25,7 @@ public class ArhiveSbornick {
     public List<infoOneSbornick>getInfoOne() {
     return Arhive;
     }
-    public  infoOneSbornick getinfo(UUID id) {
-        for (infoOneSbornick Sbornick : Arhive) {
-            if (Sbornick.getId().equals(id)) {return Sbornick;}
-        } return null;
-    }
+
     public void zapoln(String bdn) {massb = new String[kolvo(bdn)];   int n =0;int x=0;for (int i=0; i<bdn.length(); i++) {
         if (bdn.charAt(i) ==';') {massb[x] = bdn.substring(n,i); n = i+1;x++;}}}
         public int kolvo(String s) {int n=0;for (int i=0;i<s.length();i++) {if (s.charAt(i)==';') {n++;}}return n;}

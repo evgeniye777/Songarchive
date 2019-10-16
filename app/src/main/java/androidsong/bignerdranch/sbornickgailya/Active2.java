@@ -5,54 +5,36 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import databases.DATABases;
-
 public class Active2 extends AppCompatActivity {
+    //активность для работы с песнями
     private static final String TAG = "Active2";
     private static final String Key = "index";
-    ExpandableListView expList;
-    private static final String EXTRA_SONG_ID = "com.bignerdranch.android.sbornickintent.song_id";
     private EditText poisk;
-    private DATABases basa;
-    private SQLiteDatabase mdb;
     String sQ;
+    // нехочу давать этим кнопкам длинные название, но они несут татарские символы
     Button b1,b2,b3,b4,b5,b6;
+    int color;
    static int sitc;
-   boolean ra=true;
+   boolean ra=true,A23 = false;
     private static String namTa;
     Fragment2 fr = new Fragment2();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         if (savedInstanceState != null) {String vs=savedInstanceState.getString(Key,"");
             namTa = vs.substring(0,vs.indexOf("/"));
             sitc=Integer.parseInt(vs.substring(vs.indexOf("/")+1));
@@ -64,17 +46,23 @@ public class Active2 extends AppCompatActivity {
         }
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        int theme = sp.getInt("THEME", R.style.AppTheme);
-        if (sitc==1) {
-            theme = sp.getInt("THEME", R.style.AppTheme2);}
+        int theme;
+        if (sitc==0) { theme = sp.getInt("THEME", R.style.AppTheme);color = R.color.white;}
+        else if (sitc==1) { theme = sp.getInt("THEME", R.style.AppTheme2); color = R.color.blacckS;}
+        else if (sitc==2) { theme = sp.getInt("THEME", R.style.AppTheme3);color = R.color.greenwin; }
+        else if (sitc==3) { theme = sp.getInt("THEME", R.style.AppTheme4); color = R.color.Yellowwin;}
+        else if (sitc==4) { theme = sp.getInt("THEME", R.style.AppTheme5);color = R.color.Pinkwin;}
+        else if (sitc==5) { theme = sp.getInt("THEME", R.style.AppTheme6);color = R.color.blywin;}
+        else if (sitc==6) { theme = sp.getInt("THEME", R.style.AppTheme7);color = R.color.Parplewin;}
+        else if (sitc==7) { theme = sp.getInt("THEME", R.style.AppTheme8);color = R.color.blydarkwin;}
+        else if (sitc==8) { theme = sp.getInt("THEME", R.style.AppTheme9);color = R.color.brownwin;}
+        else { theme = sp.getInt("THEME", R.style.AppTheme10);color = R.color.orangewin;}
         setTheme(theme);
         setTitle(namZag(namTa));
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.foractiv1two);
         poisk = (EditText) findViewById(R.id.poisk);
-        if (sitc==1) {poisk.setTextColor(Color.WHITE); }
-        else {poisk.setTextColor(Color.BLACK);}
         LinearLayout dopbut = (LinearLayout) findViewById(R.id.dopbut);
         b1 =(Button) findViewById(R.id.but1);
         b2 =(Button) findViewById(R.id.but2);
@@ -82,6 +70,7 @@ public class Active2 extends AppCompatActivity {
         b4 =(Button) findViewById(R.id.but4);
         b5 =(Button) findViewById(R.id.but5);
         b6 =(Button) findViewById(R.id.but6);
+        //t4 - название таблицы с татарскими песнями, и если сборник другой не татарский то кнопки эти не нужны
         if (!namTa.equals("t4")) {
             dopbut.setVisibility(View.GONE);
             b1.setVisibility(View.GONE);
@@ -104,13 +93,11 @@ public class Active2 extends AppCompatActivity {
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                //fr.Dpoisk("" + s);
                 sQ=""+s;
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //fr.Dpoisk("" + s);
                 sQ=""+s;
 
             }
@@ -175,27 +162,13 @@ b1.setOnClickListener(new View.OnClickListener() {
         return intent;
     }
 
-    ;
+
 
 
     protected Fragment createFragment() {
-
-
-       /* basa = new DATABases(this);
-
-        try {
-            basa.updateDataBase();
-        } catch (IOException mIOException) {
-            throw new Error("UnableToUpdateDatabase");
-        }
-
-        try {
-            mdb = basa.getWritableDatabase();
-        } catch (SQLException mSQLException) {
-            throw mSQLException;
-        }*/
        fr.Thema(sitc);
         fr.plusdata(namTa);
+        fr.setcolor(color);
         return fr;
     }
 
@@ -230,6 +203,16 @@ b1.setOnClickListener(new View.OnClickListener() {
         super.onDestroy();
         if (ra) {
             fr.Dpoisk("");}
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+       A23 = false;
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        A23 = true;
     }
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {

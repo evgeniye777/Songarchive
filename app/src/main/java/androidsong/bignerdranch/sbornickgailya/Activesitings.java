@@ -9,72 +9,68 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.ExpandableListView;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
-
-import databases.DATABases;
+import databases.DATABasestwo;
 
 public class Activesitings extends AppCompatActivity {
     SeekBar textSize;
     TextView text;
-    Button mCheckBox;
     Switch swi;
-    private DATABases basa;
-    private SQLiteDatabase mdb;
+    private DATABasestwo basa2;
+    private SQLiteDatabase mdb2;
     float r0=20;
-    int[] sit = new int[4];
+    int[] sit = new int[20];
     int i=50;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTitle("Настройки");
         String nameT;
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        int theme = sp.getInt("THEME", R.style.AppTheme);
+        int theme;
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
 
 
-        basa = new DATABases(this);
+        basa2 = new DATABasestwo(this);
         try {
-            basa.updateDataBase();
+            basa2.updateDataBase();
         } catch (IOException mIOException) {
             throw new Error("UnableToUpdateDatabase");
         }
 
         try {
-            mdb = basa.getWritableDatabase();
+            mdb2 = basa2.getWritableDatabase();
         } catch (SQLException mSQLException) {
             throw mSQLException;
         }
         info();
-        if (sit[2]==0) {super.setTheme(theme); nameT = "Тёмная тема";}
-        else {theme = sp.getInt("THEME", R.style.AppTheme2);
-            super.setTheme(theme);nameT="Светлая тема";}
+        if (sit[2]==0) {theme = sp.getInt("THEME", R.style.AppTheme);}
+        else if (sit[2]==1) { theme = sp.getInt("THEME", R.style.AppTheme2);}
+        else if (sit[2]==2) { theme = sp.getInt("THEME", R.style.AppTheme3);}
+        else if (sit[2]==3) { theme = sp.getInt("THEME", R.style.AppTheme4);}
+        else if (sit[2]==4) { theme = sp.getInt("THEME", R.style.AppTheme5);}
+        else if (sit[2]==5) { theme = sp.getInt("THEME", R.style.AppTheme6);}
+        else if (sit[2]==6) { theme = sp.getInt("THEME", R.style.AppTheme7);}
+        else if (sit[2]==7) { theme = sp.getInt("THEME", R.style.AppTheme8);}
+        else if (sit[2]==8) { theme = sp.getInt("THEME", R.style.AppTheme9);}
+        else { theme = sp.getInt("THEME", R.style.AppTheme10);}
+        super.setTheme(theme);
 
         setContentView(R.layout.foractivesitings);
         textSize = (SeekBar) findViewById(R.id.seekBar2);
         text = (TextView) findViewById(R.id.text);
-        mCheckBox = (Button) findViewById(R.id.checkBox);
-        mCheckBox.setText(nameT);
+        Boltactiv(); Italikactiv();Allactiv();
                 textSize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progressValue, boolean fromUser) {
@@ -85,7 +81,7 @@ public class Activesitings extends AppCompatActivity {
                 text.setTextSize(r);
                 ContentValues values = new ContentValues();
                 values.put("sitings", (int)r);
-                mdb.update("t8", values, "_id" + " = ?", new String[]{""+1});
+                mdb2.update("t8", values, "_id" + " = ?", new String[]{""+1});
             }
 
             // никак не реагируем на начало движения индикатора прогресса
@@ -103,19 +99,6 @@ public class Activesitings extends AppCompatActivity {
         if (sit[0]>20) {i=(sit[0]-20)*4+50;}
         else {i = (sit[0]-20)*5+50;}
         textSize.setProgress(i);
-
-        mCheckBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ContentValues values = new ContentValues();
-                values.put("sitings", (int)(sit[2]+1)%2);
-                mdb.update("t8", values, "_id" + " = ?", new String[]{""+3});
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
-            }
-        });
-
         swi = (Switch) findViewById(R.id.switch1);
         if (sit[3]==0) {
         swi.setChecked(true);}
@@ -129,14 +112,14 @@ if (isChecked) {
     values2.put("sitings", 0);
 }
 else {values2.put("sitings", 1);}
-                mdb.update("t8", values2, "_id" + " = ?", new String[]{""+4});
+                mdb2.update("t8", values2, "_id" + " = ?", new String[]{""+4});
             }
         });
     }
 
 
     public void info() {
-        Cursor cursor = mdb.rawQuery("SELECT * FROM " + "t8", null);
+        Cursor cursor = mdb2.rawQuery("SELECT * FROM " + "t8", null);
         cursor.moveToFirst();
         int i = 0;
         while (!cursor.isAfterLast()) {
@@ -155,5 +138,49 @@ else {values2.put("sitings", 1);}
 
     public void vivod(String s) {
         Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
+    }
+
+    public void beginWhite(View view) {butresult(0);}
+    public void beginBlack(View view) {butresult(1);}
+    public void beginGreen(View view) {butresult(2);}
+    public void beginYellow(View view) {butresult(3);}
+    public void beginPink(View view) {butresult(4);}
+    public void beginbly(View view) {butresult(5);}
+    public void beginParple(View view) {butresult(6);}
+    public void beginblydark(View view) {butresult(7);}
+    public void beginbrown(View view) {butresult(8);}
+    public void beginorange(View view) {butresult(9);}
+    public void beginBolt(View view) { click(4);Boltactiv();}
+    public void beginItalik(View view) {click(5);Italikactiv();}
+    public void beginAll(View view) {click(6);Allactiv();}
+    public void butresult(int i) {
+        ContentValues values = new ContentValues();
+        values.put("sitings", i);
+        mdb2.update("t8", values, "_id" + " = ?", new String[]{""+3});
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
+    public void Boltactiv() {
+        if (sit[5]==0&&sit[4]==0) {text.setTypeface(null, Typeface.NORMAL);}
+        else if (sit[5]==0&&sit[4]==1){text.setTypeface(null, Typeface.BOLD);}
+        else if (sit[5]==1&&sit[4]==0){text.setTypeface(null, Typeface.ITALIC);}
+        else if (sit[5]==1&&sit[4]==1){text.setTypeface(null, Typeface.BOLD_ITALIC);}
+    }
+    public void Italikactiv() {
+        if (sit[4]==0&&sit[5]==0) {text.setTypeface(null, Typeface.NORMAL);}
+        else if (sit[4]==0&&sit[5]==1){text.setTypeface(null, Typeface.ITALIC);}
+        else if (sit[4]==1&&sit[5]==0){text.setTypeface(null, Typeface.BOLD);}
+        else if (sit[4]==1&&sit[5]==1){text.setTypeface(null, Typeface.BOLD_ITALIC);
+    }}
+    public void Allactiv() {
+        if (sit[6]==0) {text.setAllCaps(false);}
+        else{text.setAllCaps(true);}
+    }
+    public void click(int num) {
+        ContentValues values = new ContentValues();
+        sit[num] = (sit[num]+1)%2;
+        values.put("sitings", sit[num]);
+        mdb2.update("t8", values, "_id" + " = ?", new String[]{""+(num+1)});
     }
 }

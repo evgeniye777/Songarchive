@@ -24,8 +24,7 @@
           android:layout_marginLeft="10dp"
           android:textSize="20dp"
           android:selectAllOnFocus="true"
-          android:singleLine="true"
-          android:textColor="@color/colorAccent" />
+          android:singleLine="true" />
    <LinearLayout
        android:layout_marginTop="1dp"
        android:id="@+id/dopbut"
@@ -34,10 +33,9 @@
        android:layout_marginRight="10dp"
        android:layout_marginLeft="10dp"
        android:orientation="horizontal">
-
+//6 кнопок для обозначения татарских символов, не хочу давать им длинные названия
       <Button
           android:id="@+id/but1"
-
           android:layout_width="wrap_content"
           android:layout_height="20dp"
           android:layout_weight="1"

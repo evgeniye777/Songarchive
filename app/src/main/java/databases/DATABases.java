@@ -14,9 +14,9 @@ import java.io.OutputStream;
 import java.sql.*;
 
 public class DATABases extends SQLiteOpenHelper {
-    private static String DB_NAME = "Sbornick.db";
+    private static String DB_NAME="Sbornick.db";
     private static String DB_PATH = "";
-    private static final int DB_VERSION = 24;
+    private static int DB_VERSION = 33;
 
     private SQLiteDatabase mDataBase;
     private final Context mContext;

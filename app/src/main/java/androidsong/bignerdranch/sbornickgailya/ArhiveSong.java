@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.SnapHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +14,9 @@ import java.util.UUID;
 public class ArhiveSong {
     private static ArhiveSong B;
     private static final String TAG = "MainActivity";
-    private String dpoisk = "";
     private List<infoOneSong> Arhive;
     private SQLiteDatabase db;
-    private String ids;
+    private SQLiteDatabase db2;
     private String namTa;
 
     public static ArhiveSong get(Context context) {
@@ -33,16 +33,7 @@ public class ArhiveSong {
     public List<infoOneSong> getInfoOne() {
         return Arhive;
     }
-
-    public infoOneSong getinfo(UUID id) {
-        for (infoOneSong Song : Arhive) {
-            if (Song.getId().equals(id)) {
-                return Song;
-            }
-        }
-        return null;
-    }
-
+//метод для хранения всех песен выбранного сборника
     public void Obnovlenie() {
         int n = 1;
         if (namTa.length() > 2) {
@@ -59,14 +50,19 @@ public class ArhiveSong {
         }
         masSb[n - 1] = namTa.substring(x);
         Arhive = new ArrayList<>();
+        //в таблице 5 столбцов, поэтому нужно 5 переменных для храниня id, названия, слов, тональности и аккордов
         String product = "";
         String product2 = "";
         String product3 = "";
         String product4 = "";
-        String product5 = "";
         String product0;
         for (int i = 0; i < masSb.length; i++) {
-            Cursor cursor = db.rawQuery("SELECT * FROM " + masSb[i], null);
+            Cursor cursor;
+            Log.i(TAG,masSb[i]);
+            if (!masSb[i].equals("t5")&&!masSb[i].equals("t6")&&!masSb[i].equals("t7")) {
+            cursor = db.rawQuery("SELECT * FROM " + masSb[i], null);}
+            else {cursor = db2.rawQuery("SELECT * FROM " + masSb[i], null);
+                }
             cursor.moveToFirst();
             String tab = masSb[i];
             while (!cursor.isAfterLast()) {
@@ -76,9 +72,12 @@ public class ArhiveSong {
                 product2 = cursor.getString(2);
                 product3 = cursor.getString(3);
                 product4 = cursor.getString(4);
-                product5 = cursor.getString(5);}
+                    Log.i(TAG,masSb[i]);}
                 else {tab = product.substring(0,product.indexOf(";")); String id = product.substring(product.indexOf(";")+1);
-                    Cursor cursor2 = db.rawQuery("SELECT * FROM " + tab, null);
+                    Cursor cursor2;
+                    if (!tab.equals("t5")) {
+                    cursor2 = db.rawQuery("SELECT * FROM " + tab, null);}
+                    else {cursor2 = db2.rawQuery("SELECT * FROM " + tab, null);}
                     if (tab.equals("t5")) {
                         cursor2.moveToFirst();
                         while (!cursor2.getString(0).equals(""+id)) {cursor2.moveToNext();}
@@ -90,12 +89,11 @@ public class ArhiveSong {
                             product2 = cursor2.getString(2);
                             product3 = cursor2.getString(3);
                             product4 = cursor2.getString(4);
-                            product5 = cursor2.getString(5);
                     cursor2.close();
                 }
                 cursor.moveToNext();
 
-                infoOneSong Song = new infoOneSong(UUID.randomUUID());
+                infoOneSong Song = new infoOneSong();
                 ;
                 Song.setText(product2);
                 if (product.length() > 32) {
@@ -109,18 +107,18 @@ public class ArhiveSong {
                 Song.N2(0);
                 Song.setidn(product0);
                 Song.setnameintext("name");
-                Song.izbran(product5);
                     Arhive.add(Song);
 
             }
             cursor.close();
         }
     }
-
+// метод для записи новой песни или внесения изменений
     public void updateCrime(infoOneSong isong) {
-        String uuidstring = isong.getId().toString();
         ContentValues values = getContentValues(isong);
-        db.update(isong.getnsb(), values, "_id" + " = ?", new String[]{isong.getidn()});
+        if (!isong.getnsb().equals("t5")&&!isong.getnsb().equals("t6")&&!isong.getnsb().equals("t7")) {
+        db.update(isong.getnsb(), values, "_id" + " = ?", new String[]{isong.getidn()});}
+        else {db2.update(isong.getnsb(), values, "_id" + " = ?", new String[]{isong.getidn()});}
     }
 
     private ContentValues getContentValues(infoOneSong isong) {
@@ -130,27 +128,19 @@ public class ArhiveSong {
         values.put("slova", isong.getText());
         values.put("ton", isong.getTon());
         values.put("akords", isong.getAkords());
-        values.put("izbran", isong.getizbran());
         return values;
     }
-
-    public void plusbasa(SQLiteDatabase db0, String namT) {
+//  с помощью этого метода данному классу передаются две базы данных и название сборника
+    public void plusbasa(SQLiteDatabase db0, SQLiteDatabase db1, String namT) {
         db = db0;
+        db2 = db1;
         namTa = namT;
     }
-
-    String Nomer(String s) {
-        String c = "";
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) >= '0' && s.charAt(i) <= '9') {
-                c += s.charAt(i);
-            }
-        }
-        return c;
-    }
-
+//удаление песни
     public void delCrime(infoOneSong c) {
-        db.delete(c.getnsb(), "_id = ?", new String[]{c.getidn().toString()});
+        if (!c.getnsb().equals("t5")&&!c.getnsb().equals("t6")&&!c.getnsb().equals("t7")) {
+        db.delete(c.getnsb(), "_id = ?", new String[]{c.getidn().toString()});}
+        else {db2.delete(c.getnsb(), "_id = ?", new String[]{c.getidn().toString()});}
         Obnovlenie();
     }
 }

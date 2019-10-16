@@ -9,23 +9,30 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 
 
 public class VuborTonaClass extends DialogFragment {
+    //класс для открытия окна изменить тонеальность
     public  static  final String EXTRA_TON = "com.bignerdranceh.android.criminalintent.ton";
     public  static  final String EXTRA_TONn = "com.bignerdranceh.android.criminalintent.tonn";
     String masT[] =  {"A","A#","H","C","C#","D","D#","E","F","F#","G","G#"};
+    //12 тонов соответственно 12 кнопок
     Button T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12;
     String Tnew;
     String Tlast,TlastO;
-    //private  static final String ARG_DATE = "ton";
-    public static VuborTonaClass newInstance(String Ton) {
-        //Bundle args = new Bundle();
-        //args.putSerializable(ARG_DATE,Ton);
+    static  int color;
+    public static VuborTonaClass newInstance(int color0) {
+        color = color0;
         VuborTonaClass fragment = new VuborTonaClass();
-        //fragment.setArguments(args);
         return fragment;
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        Window window = getDialog().getWindow();
+        window.setBackgroundDrawableResource(color);
     }
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

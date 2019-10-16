@@ -3,6 +3,7 @@ package androidsong.bignerdranch.sbornickgailya;
 import java.util.UUID;
 
 public class infoOneSbornick {
+    // класс для хранения параметров одного сборника
     UUID mid;
     String Name;
 

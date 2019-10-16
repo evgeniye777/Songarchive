@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 public abstract class SingleClass extends AppCompatActivity{
+    //это вспомогательный класс для работы с активностями, он наследуется в Activ1
     protected abstract Fragment createFragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
